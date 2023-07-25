@@ -5,7 +5,6 @@ class ContactsController < ApplicationController
 
   def index
     @contacts = Contact.all
-    @contacts = @contacts.where("first_name, last_name, phone LIKE ?", "%#{params[:query]}%") if params[:query].present?
   end
 
   def new

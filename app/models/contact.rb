@@ -6,7 +6,7 @@ class Contact < ApplicationRecord
     validate :phone_valid
 
     def phone_valid
-        return if phone.match(/^\d{10}$/)
+        return if phone.present? && phone.match(/^\d{10}$/)
 
         errors.add(:phone, :invalid_phone, message: 'must contain exactly 10 digits')
     end
