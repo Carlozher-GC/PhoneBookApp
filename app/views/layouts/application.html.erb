@@ -11,6 +11,61 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="main-div">
+      <h1 class="app-title">Phone Book App</h1>
+      <%= yield %>
+    </div>
   </body>
 </html>
+
+<style>
+  .main-div {
+    background-color: #F6F6F6;
+    display: flex;
+    flex-direction: column;
+    width: 622px;
+    padding: 5%;
+    padding-top: 0%;
+    margin: auto;
+  }
+
+  h2 {
+      margin: 0px;
+      margin-bottom: 10px;
+  }
+
+  .app-title {
+    text-align: center;
+  }
+
+  .primary-button {
+    background-color: #427CEE;
+    color: #F7F7FD;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .danger-button {
+    background-color: #BD4E4E;
+    color: #F7F7FD;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    height: fit-content;
+  }
+
+  .field-input {
+    border: 1px #D6DADD solid;
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+</style>

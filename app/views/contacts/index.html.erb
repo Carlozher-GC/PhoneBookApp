@@ -1,0 +1,114 @@
+<div class="index-header">
+    <h2>Contacts</h2>
+    <%= link_to new_contact_path, method: :get, class: 'primary-button' do %>
+        + Add Contact
+    <% end %>
+</div>
+
+<div class="filters">
+    <span class="search-filter-icon">
+        <%= render 'icons/search' %>
+    </span>
+    <input
+        id="search-filter-input"
+        class="search-filter"
+        placeholder="Search for contact by last name..."
+    />
+</div>
+
+<%= content_tag 'div', id: 'contacts', class: 'contacts-list', data: { contacts: @contacts } do %>
+    <%= 'No contacts have been found' if @contacts.blank? %>
+    <% @contacts.each do |contact| %>
+        <%= link_to edit_contact_path(contact) do %>
+            <%= render 'contact_item', contact: contact %>
+        <% end %>
+    <% end %>
+<% end %>
+
+<script>
+    const contacts = JSON.parse(document.getElementById('contacts').getAttribute('data-contacts'));
+    const searchInput = document.getElementById('search-filter-input');
+    const filterContacts = (event) => {
+        const query = event.target.value || '';
+        for (const contact of contacts) {
+            const searchString = `${contact.first_name} ${contact.last_name} ${contact.phone}`.toLowerCase();
+            if (searchString.includes(query.toLowerCase())) {
+                document.getElementById(`contact-${contact.id}`).style.display = 'flex';
+            } else {
+                document.getElementById(`contact-${contact.id}`).style.display = 'none';
+            }
+        }
+    };
+    searchInput.addEventListener('input', filterContacts);
+</script>
+
+<style>
+    .index-header {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .filters {
+        margin-bottom: 20px;
+        display: flex;
+        position: relative;
+    }
+
+    .search-filter-icon {
+        position: absolute;
+        color: #7B7F84;
+        top: 10px;
+        left: 10px;
+    }
+
+    .search-filter {
+        border: 1px #D6DADD solid;
+        border-radius: 5px;
+        padding: 10px;
+        padding-left: 30px;
+        width: 100%;
+    }
+
+    .contacts-list {
+        border : 1px #D6DADD solid;
+        border-radius: 5px;
+        background-color: white;
+    }
+
+    .contacts-list a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .contact-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 15px;
+        border-bottom: 1px #D6DADD solid;
+    }
+
+    .contact-item:hover {
+        background-color: lightblue;
+    }
+
+    .contact-item h3 {
+        margin: 0px;
+        margin-bottom: 5px;
+    }
+
+    .contact-item-info {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-phone {
+        margin: 0px;
+        color: #A7A7A7;
+    }
+
+    .delete-button {
+        z-index: 10;
+    }
+</style>

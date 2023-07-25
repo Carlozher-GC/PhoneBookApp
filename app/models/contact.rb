@@ -8,6 +8,6 @@ class Contact < ApplicationRecord
     def phone_valid
         return if phone.match(/^\d{10}$/)
 
-        errors.add(:phone, :invalid_phone, message: 'Phone must contain exactly 10 digits')
+        errors.add(:phone, :invalid_phone, message: 'must contain exactly 10 digits')
     end
 end

@@ -1,0 +1,14 @@
+<%= form_for @contact, data: { turbo: false } do |form| %>
+    <%= render 'shared/model_errors', object: form.object %>
+
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name, class: 'field-input', required: true %>
+
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name, class: 'field-input', required: true %>
+
+    <%= form.label :phone %>
+    <%= form.text_field :phone, class: 'field-input', required: true %>
+
+    <%= form.submit submit_button_text, class: 'primary-button' %>
+<% end %>
